@@ -5,7 +5,7 @@ const Table = (props) => {
             <td>{props.meteorOne.id}</td>
             <td>{props.meteorOne.mass}</td>
             <td>{props.meteorOne.recclass}</td>
-            <td>{props.meteorOne.year}</td>
+            <td>{props.meteorOne.year.slice(0,4)}</td>
         </tr>
     )
 }
