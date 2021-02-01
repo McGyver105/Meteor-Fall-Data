@@ -2,3 +2,18 @@
   text-align: center;
 }
 
+.nyan {
+  height: 40px;
+}
+
+.headers {
+  background-color: rgb(39, 39, 39);
+  color: aliceblue;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(230, 228, 228);
+  border-radius: 5px;
+}
