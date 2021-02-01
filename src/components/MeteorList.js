@@ -3,11 +3,29 @@ import Table from "./Table"
 
 class MeteorList extends React.Component {
     state = {
-        meteors : [{name: "meteor-1", id: 1, recclass: "material", mass: 123, year: Date.now()}]
+        meteors : []
         //new Date().getYear
     }
 
-render() {
+    componentDidMount () {
+        const array = []
+        fetch('https://data.nasa.gov/resource/gh4g-9sfh.json?$select=name,id,mass,year,recclass%20where%20year%20between%20%272012-01-01T00:00:00.000%27%20and%20%272013-01-01T00:00:00.000%27')
+            .then(res => {
+                array.push(res.json())
+                return array
+            })
+            .then(res => {
+            return Promise.all(res)
+            })
+            .then(([res]) => {
+                this.setState(() => {
+                    return { meteors: res };
+                });
+        })
+    }
+    
+    render () {
+   console.log(this.state.meteors)
     return (
         <div>
             <table>
@@ -20,8 +38,10 @@ render() {
                 <th>year</th>
             </tr>
             </thead>
-            <tbody>
-          <Table meteorOne={this.state.meteors[0]}/>
+                <tbody>
+                    {this.state.meteors.map((meteor) => {
+                        return <Table key={meteor.id} meteorOne={meteor}/>
+                    })}
           </tbody>
           </table>
         </div>

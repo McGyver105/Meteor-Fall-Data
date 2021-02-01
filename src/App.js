@@ -2,7 +2,7 @@ import './App.css';
 import Title from './components/Title'
 import MeteorList from './components/MeteorList'
 
-function App() {
+function App () {
   return (
     <div className="App">
     <Title />
