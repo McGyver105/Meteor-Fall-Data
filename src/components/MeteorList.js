@@ -15,7 +15,7 @@ class MeteorList extends React.Component {
         datasets: [{
             label: "test values",
             backgroundColor: "rgba(255,99,132,0.5)",
-            data: [1, 2, 3]
+            data: [1, 2, 10]
         }]
     }
 
