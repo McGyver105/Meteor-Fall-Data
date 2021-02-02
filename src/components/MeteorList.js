@@ -2,8 +2,8 @@ import React from "react";
 import Table from "./Table"
 import { Bar } from "react-chartjs-2"
 import '../App.css'
+import fetchDataFromNasa from "./Api"
 import getMassFromData from "../utils/getMassFromData"
-
 
 class MeteorList extends React.Component {
     state = {
@@ -20,20 +20,11 @@ class MeteorList extends React.Component {
     }
 
     componentDidMount() {
-        const array = []
-        fetch('https://data.nasa.gov/resource/gh4g-9sfh.json?$select=name,id,mass,year,recclass%20where%20year%20between%20%272012-01-01T00:00:00.000%27%20and%20%272013-01-01T00:00:00.000%27')
-            .then(res => {
-                array.push(res.json())
-                return array
-            })
-            .then(res => {
-                return Promise.all(res)
-            })
-            .then(([res]) => {
-                this.setState((currentState) => {
-                    return { ...currentState, meteors: res, isLoading: false, data: { ...currentState.data, datasets: [{ ...currentState.data.datasets[0], data: getMassFromData(res) }] } }
-                }); //everytime we go to the next level of nesting, need to grab what's in there and copy it before moving on
-            })
+        fetchDataFromNasa("2000", "2013").then(([res]) => {
+            this.setState((currentState) => {
+                return { ...currentState, meteors: res, isLoading: false, data: { ...currentState.data, datasets: [{ ...currentState.data.datasets[0], data: getMassFromData(res) }] } }
+            }); //everytime we go to the next level of nesting, need to grab what's in there and copy it before moving on
+        })
     }
 
     render() {

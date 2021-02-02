@@ -1,7 +1,7 @@
 const Title = () => {
     return (
         <header>
-           <h1>2012-2013 Fallen Meteorites Data</h1>
+           <h1>Fallen Meteorites Data</h1>
         </header>
     )
 }
