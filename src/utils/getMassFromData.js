@@ -25,11 +25,12 @@ const getMassFromData = (meteorState) => {
         else if (meteorState[i].mass <= 700 && meteorState[i].mass > 400) finalArray[5]++
         else if (meteorState[i].mass <= 1000 && meteorState[i].mass > 700) finalArray[6]++
         else if (meteorState[i].mass <= 10000 && meteorState[i].mass > 1000) finalArray[7]++
-        else if (meteorState[i].mass <= 100000 && meteorState[i].mass > 10000) finalArray[8]++
-        else if (meteorState[i].mass > 100000) finalArray[9]++
+        else if (meteorState[i].mass < 100000 && meteorState[i].mass > 10000) finalArray[8]++
+        else if (meteorState[i].mass >= 100000) finalArray[9]++
     }
     return finalArray;
 }
 
-module.exports = getMassFromData;
+// module.exports = getMassFromData;
+export default getMassFromData;
 
