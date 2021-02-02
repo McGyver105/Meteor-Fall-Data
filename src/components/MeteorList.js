@@ -1,12 +1,22 @@
 import React from "react";
 import Table from "./Table"
-import BarChart from './BarChart'
+import { Bar } from "react-chartjs-2"
 import '../App.css'
+
 
 class MeteorList extends React.Component {
     state = {
         meteors: [],
         isLoading: true
+    }
+
+    data = {
+        labels: ["a", "b", "c"],
+        datasets: [{
+            label: "test values",
+            backgroundColor: "rgba(255,99,132,0.5)",
+            data: [1, 2, 3]
+        }]
     }
 
     componentDidMount () {
@@ -36,7 +46,7 @@ class MeteorList extends React.Component {
                 </section>
                 :
         <div>
-            <BarChart meteor={this.state.meteors[0]}/>
+            <Bar data={this.data}/>
             <table>
                 <thead>
             <tr className="headers">
