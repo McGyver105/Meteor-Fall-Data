@@ -1,7 +1,7 @@
-const Title = () => {
+const Title = ({start, finish}) => {
     return (
         <header>
-           <h1>Fallen Meteorites Data</h1>
+           <h1>{`Fallen Meteorites Data from ${start} to ${finish}`}</h1>
         </header>
     )
 }

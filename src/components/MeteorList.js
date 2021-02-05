@@ -4,6 +4,7 @@ import { Bar } from "react-chartjs-2"
 import '../App.css'
 import fetchDataFromNasa from "./Api"
 import getMassFromData from "../utils/getMassFromData"
+import Title from "./Title";
 
 class MeteorList extends React.Component {
     state = {
@@ -16,18 +17,37 @@ class MeteorList extends React.Component {
                 backgroundColor: "rgba(255,99,132,0.5)",
                 data: []
             }]
-        }
+        },
+        years: {
+            start: 2012,
+            finish: 2013
+        },
+        titleYears: {
+            start: 2012,
+            finish: 2013
+        },
+        changedYears: false
     }
 
     componentDidMount() {
-        fetchDataFromNasa("2000", "2013").then(([res]) => {
+        fetchDataFromNasa("2012", "2013").then(([res]) => {
             this.setState((currentState) => {
                 return { ...currentState, meteors: res, isLoading: false, data: { ...currentState.data, datasets: [{ ...currentState.data.datasets[0], data: getMassFromData(res) }] } }
-            }); //everytime we go to the next level of nesting, need to grab what's in there and copy it before moving on
+            });
         })
     }
 
-    render() {
+    componentDidUpdate () {
+        if (this.state.changedYears) {
+            fetchDataFromNasa(this.state.years.start, this.state.years.finish).then(([res]) => {
+                this.setState((currentState) => {
+                    return { ...currentState, meteors: res, isLoading: false, data: { ...currentState.data, datasets: [{ ...currentState.data.datasets[0], data: getMassFromData(res) }] }, changedYears: false }
+                });
+            })
+        }
+    }
+
+    render () {
         return (
             this.state.isLoading ?
                 <section>
@@ -35,9 +55,36 @@ class MeteorList extends React.Component {
                     </img>
                     <p>Loading</p>
                 </section>
-                : //second rendering
+                : 
                 <div>
+                    <Title start={this.state.titleYears.start} finish={this.state.titleYears.finish} />
                     <Bar data={this.state.data} />
+                    <p>Choose years to display</p>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            From
+                            <input
+                                type="number"
+                                minLength="0"
+                                maxLength="2020"
+                                value={this.state.years.start}
+                                name="start"
+                                onChange={this.handleChange}
+                            ></input>
+                        </label>
+                        <label>
+                            Until
+                            <input
+                                type="number"
+                                minLength="0"
+                                maxLength="2020"
+                                value={this.state.years.finish}
+                                name="finish"
+                                onChange={this.handleChange}
+                            ></input>
+                        </label>
+                        <button>Submit</button>
+                    </form>
                     <table>
                         <thead>
                             <tr className="headers">
@@ -56,6 +103,19 @@ class MeteorList extends React.Component {
                     </table>
                 </div>
         )
+    }
+
+    handleChange = (event) => {
+        this.setState((current) => {
+            return { years: { ...current.years, [event.target.name]: event.target.value } };
+        });
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.setState((current) => {
+            return { changedYears: true, titleYears: { start: current.years.start, finish: current.years.finish}};
+        });
     }
 }
 
