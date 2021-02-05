@@ -12,8 +12,27 @@
 }
 
 table {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(230, 228, 228);
   border-radius: 5px;
+}
+
+td {
+  max-width: 80px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 768px) {
+  table {
+    width: 100%;
+  }
+
+  td {
+    max-width: fit-content;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
