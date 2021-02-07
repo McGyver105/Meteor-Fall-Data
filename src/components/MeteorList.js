@@ -56,9 +56,15 @@ class MeteorList extends React.Component {
                 : 
                 <>
                     <Title start={this.state.titleYears.start} finish={this.state.titleYears.finish} />
-                    <Bar data={this.state.data} />
                     <p>Choose years to display</p>
                     <YearInputForm handleSubmit={this.handleSubmit} handleChange={this.handleChange} state={this.state} />
+                    <Bar
+                        data={this.state.data}
+                        width={50}
+                        height={16}
+                        options={{ maintainAspectRatio: true }}
+                      
+                    />
                     <MeteorTable meteors={this.state.meteors}/>
                 </>
         )
