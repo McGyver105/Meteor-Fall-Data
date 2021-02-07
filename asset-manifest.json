@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Meteor-Fall-Data/static/css/main.b8fe7cfd.chunk.css",
+    "main.js": "/Meteor-Fall-Data/static/js/main.affc75df.chunk.js",
+    "main.js.map": "/Meteor-Fall-Data/static/js/main.affc75df.chunk.js.map",
+    "runtime-main.js": "/Meteor-Fall-Data/static/js/runtime-main.1bd6d2d0.js",
+    "runtime-main.js.map": "/Meteor-Fall-Data/static/js/runtime-main.1bd6d2d0.js.map",
+    "static/js/2.079cb72c.chunk.js": "/Meteor-Fall-Data/static/js/2.079cb72c.chunk.js",
+    "static/js/2.079cb72c.chunk.js.map": "/Meteor-Fall-Data/static/js/2.079cb72c.chunk.js.map",
+    "index.html": "/Meteor-Fall-Data/index.html",
+    "static/css/main.b8fe7cfd.chunk.css.map": "/Meteor-Fall-Data/static/css/main.b8fe7cfd.chunk.css.map",
+    "static/js/2.079cb72c.chunk.js.LICENSE.txt": "/Meteor-Fall-Data/static/js/2.079cb72c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1bd6d2d0.js",
+    "static/js/2.079cb72c.chunk.js",
+    "static/css/main.b8fe7cfd.chunk.css",
+    "static/js/main.affc75df.chunk.js"
+  ]
+}
